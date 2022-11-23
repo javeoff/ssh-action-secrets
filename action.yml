@@ -1,0 +1,48 @@
+name: 'SSH Remote Commands'
+description: 'Executing remote ssh commands based on secrets'
+inputs:
+  script:
+    description: 'Script for run'
+    required: true
+  secrets:
+    description: 'Secrets collection'
+    required: true
+  envs:
+    description: 'Environments collection'
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Run node script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ fromJson(inputs.secrets).SSH_HOST }}
+        port: ${{ fromJson(inputs.secrets).SSH_PORT }}
+        passphrase: ${{ fromJson(inputs.secrets).SSH_PASSPHRASE }}
+        username: ${{ fromJson(inputs.secrets).SSH_USERNAME }}
+        password: ${{ fromJson(inputs.secrets).SSH_PASSWORD }}
+        sync: ${{ fromJson(inputs.secrets).SSH_SYNC }}
+        use_insecure_cipher: ${{ fromJson(inputs.secrets).SSH_USE_INSECURE_CIPHER }}
+        cipher: ${{ fromJson(inputs.secrets).SSH_CIPHER }}
+        timeout: ${{ fromJson(inputs.secrets).SSH_TIMEOUT }}
+        command_timeout: ${{ fromJson(inputs.secrets).SSH_COMMAND_TIMEOUT }}
+        key: ${{ fromJson(inputs.secrets).SSH_PRIVATE_KEY }}
+        key_path: ${{ fromJson(inputs.secrets).SSH_KEY_PATH }}
+        fingerprint: ${{ fromJson(inputs.secrets).SSH_FINGERPRINT }}
+        proxy_host: ${{ fromJson(inputs.secrets).SSH_PROXY_HOST }}
+        proxy_port: ${{ fromJson(inputs.secrets).SSH_PROXY_PORT }}
+        proxy_username: ${{ fromJson(inputs.secrets).SSH_PROXY_USERNAME }}
+        proxy_password: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSWORD }}
+        proxy_passphrase: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSPHRASE }}
+        proxy_timeout: ${{ fromJson(inputs.secrets).SSH_PROXY_TIMEOUT }}
+        proxy_key: ${{ fromJson(inputs.secrets).SSH_PROXY_KEY }}
+        proxy_key_path: ${{ fromJson(inputs.secrets).SSH_PROXY_KEY_PATH }}
+        proxy_fingerprint: ${{ fromJson(inputs.secrets).SSH_PROXY_FINGERPRINT }}
+        proxy_cipher: ${{ fromJson(inputs.secrets).SSH_PROXY_CIPHER }}
+        proxy_use_insecure_cipher: ${{ fromJson(inputs.secrets).SSH_PROXY_USE_INSECURE_CIPHER }}
+        script_stop: ${{ fromJson(inputs.secrets).SSH_SCRIPT_STOP }}
+          default: true
+        envs: ${{inputs.envs}}
+        debug: ${{ fromJson(inputs.secrets).SSH_DEBUG }}
+        script: ${{inputs.script}}
