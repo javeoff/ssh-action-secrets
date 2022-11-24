@@ -18,7 +18,7 @@ runs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ fromJson(inputs.secrets).SSH_HOST }}
-        port: ${{ fromJson(inputs.secrets).SSH_PORT }}
+        port: ${{ fromJson(inputs.secrets).SSH_PORT || 22 }}
         passphrase: ${{ fromJson(inputs.secrets).SSH_PASSPHRASE }}
         username: ${{ fromJson(inputs.secrets).SSH_USERNAME }}
         password: ${{ fromJson(inputs.secrets).SSH_PASSWORD }}
@@ -31,7 +31,7 @@ runs:
         key_path: ${{ fromJson(inputs.secrets).SSH_KEY_PATH }}
         fingerprint: ${{ fromJson(inputs.secrets).SSH_FINGERPRINT }}
         proxy_host: ${{ fromJson(inputs.secrets).SSH_PROXY_HOST }}
-        proxy_port: ${{ fromJson(inputs.secrets).SSH_PROXY_PORT }}
+        proxy_port: ${{ fromJson(inputs.secrets).SSH_PROXY_PORT || 22 }}
         proxy_username: ${{ fromJson(inputs.secrets).SSH_PROXY_USERNAME }}
         proxy_password: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSWORD }}
         proxy_passphrase: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSPHRASE }}
