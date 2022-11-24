@@ -42,7 +42,6 @@ runs:
         proxy_cipher: ${{ fromJson(inputs.secrets).SSH_PROXY_CIPHER }}
         proxy_use_insecure_cipher: ${{ fromJson(inputs.secrets).SSH_PROXY_USE_INSECURE_CIPHER }}
         script_stop: ${{ fromJson(inputs.secrets).SSH_SCRIPT_STOP }}
-          default: true
         envs: ${{inputs.envs}}
         debug: ${{ fromJson(inputs.secrets).SSH_DEBUG }}
         script: ${{inputs.script}}
