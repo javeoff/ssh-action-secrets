@@ -25,7 +25,7 @@ runs:
         sync: ${{ fromJson(inputs.secrets).SSH_SYNC }}
         use_insecure_cipher: ${{ fromJson(inputs.secrets).SSH_USE_INSECURE_CIPHER }}
         cipher: ${{ fromJson(inputs.secrets).SSH_CIPHER }}
-        timeout: ${{ fromJson(inputs.secrets).SSH_TIMEOUT }}
+        timeout: ${{ fromJson(inputs.secrets).SSH_TIMEOUT || 30s }}
         command_timeout: ${{ fromJson(inputs.secrets).SSH_COMMAND_TIMEOUT }}
         key: ${{ fromJson(inputs.secrets).SSH_PRIVATE_KEY }}
         key_path: ${{ fromJson(inputs.secrets).SSH_KEY_PATH }}
@@ -35,7 +35,7 @@ runs:
         proxy_username: ${{ fromJson(inputs.secrets).SSH_PROXY_USERNAME }}
         proxy_password: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSWORD }}
         proxy_passphrase: ${{ fromJson(inputs.secrets).SSH_PROXY_PASSPHRASE }}
-        proxy_timeout: ${{ fromJson(inputs.secrets).SSH_PROXY_TIMEOUT }}
+        proxy_timeout: ${{ fromJson(inputs.secrets).SSH_PROXY_TIMEOUT || 30s }}
         proxy_key: ${{ fromJson(inputs.secrets).SSH_PROXY_KEY }}
         proxy_key_path: ${{ fromJson(inputs.secrets).SSH_PROXY_KEY_PATH }}
         proxy_fingerprint: ${{ fromJson(inputs.secrets).SSH_PROXY_FINGERPRINT }}
